@@ -24,6 +24,14 @@
   --animate-orbit: orbit 18s linear infinite;
   --animate-attention: attention-pulse 2.5s ease-in-out infinite;
 
+  --animate-ken-burns: ken-burns 20s ease-in-out infinite alternate;
+  --animate-float-3d: float-3d 7s ease-in-out infinite;
+  --animate-float-3d-delayed: float-3d-delayed 8s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 3s ease-in-out infinite;
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-spin-slow: spin-slow 30s linear infinite;
+  --animate-gradient-shift: gradient-shift 8s ease infinite;
+
   /* Catalogue page animations */
   --animate-page-reveal: page-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   --animate-text-reveal: text-reveal 0.6s ease-out 0.3s forwards;
@@ -238,6 +246,77 @@ body {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* ── Landing page premium animations ── */
+
+@keyframes ken-burns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate(-1%, -1%);
+  }
+}
+
+@keyframes float-3d {
+  0%, 100% {
+    transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  }
+  50% {
+    transform: translateY(8px) rotateX(-2deg) rotateY(2deg);
+  }
+}
+
+@keyframes float-3d-delayed {
+  0%, 100% {
+    transform: translateY(8px) rotateX(-2deg) rotateY(2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
 

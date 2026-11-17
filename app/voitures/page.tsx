@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense, useState, useEffect, useCallback, useRef } from "react";
-import { SignInButton } from "@clerk/nextjs";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 import pagesData from "@/public/catalogue/pages.json";
 
@@ -109,13 +108,11 @@ export default function VoituresPage() {
             </span>
           </Link>
 
-          <Suspense fallback={null}>
-            <SignInButton mode="modal">
-              <button className="rounded-full bg-gradient-to-r from-amber-500 to-amber-700 px-4 py-2 text-xs font-bold text-white shadow-lg transition-all hover:scale-105 hover:from-amber-400 hover:to-amber-600 active:scale-95 md:px-6 md:py-2.5 md:text-sm">
-                Se connecter
-              </button>
-            </SignInButton>
-          </Suspense>
+          <Link href="/sign-in">
+            <button className="rounded-full bg-gradient-to-r from-amber-500 to-amber-700 px-4 py-2 text-xs font-bold text-white shadow-lg transition-all hover:scale-105 hover:from-amber-400 hover:to-amber-600 active:scale-95 md:px-6 md:py-2.5 md:text-sm">
+              Se connecter
+            </button>
+          </Link>
         </div>
       </header>
 
