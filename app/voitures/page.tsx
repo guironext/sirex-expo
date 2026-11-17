@@ -121,11 +121,23 @@ export default function VoituresPage() {
 
       {/* ── Hero ── */}
       <section className="relative z-10 mx-auto max-w-7xl px-4 pt-6 pb-3 text-center md:pt-10 md:pb-4">
-        <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/5 px-4 py-1.5">
-          <span className="h-2 w-2 rounded-full bg-amber-400" />
-          <span className="text-[0.65rem] font-medium uppercase tracking-wider text-amber-300/80 md:text-xs">
-            Collection 2026
-          </span>
+        <div className="mb-2 flex flex-wrap items-center justify-center gap-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/5 px-4 py-1.5">
+            <span className="h-2 w-2 rounded-full bg-amber-400" />
+            <span className="text-[0.65rem] font-medium uppercase tracking-wider text-amber-300/80 md:text-xs">
+              Collection 2026
+            </span>
+          </div>
+          <a
+            href="/catalogue.pdf"
+            download
+            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-700 px-4 py-1.5 text-[0.65rem] font-bold text-white shadow-lg shadow-amber-500/20 transition-all hover:scale-105 hover:from-amber-400 hover:to-amber-600 active:scale-95 md:px-5 md:text-xs"
+          >
+            <svg className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-y-0.5 md:h-4 md:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+            </svg>
+            Télécharger le catalogue
+          </a>
         </div>
         <h1 className="mb-2 text-3xl font-black leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
           Nos Voitures Kpandji
