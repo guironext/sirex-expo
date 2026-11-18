@@ -4,14 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
-import pagesData from "@/public/brochure/pages.json";
+import pagesData from "@/public/pto/pages.json";
 
-type BrochurePage = {
+type PTOPage = {
   num: number;
+  title: string;
   text: string;
 };
 
-const pages: BrochurePage[] = pagesData as BrochurePage[];
+const pages: PTOPage[] = pagesData as PTOPage[];
 
 export default function AlternateurTPOPage() {
   const [activePage, setActivePage] = useState(1);
@@ -56,6 +57,8 @@ export default function AlternateurTPOPage() {
     setNavOpen(false);
   };
 
+  const activePageData = pages.find((p) => p.num === activePage);
+
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden bg-[#06080c] text-foreground">
       {/* ── Ambient background ── */}
@@ -99,12 +102,12 @@ export default function AlternateurTPOPage() {
                 Alternateur TPO
               </span>
               <span className="hidden text-[0.6rem] text-cyan-400/50 sm:block md:text-xs">
-                Mecc Alte · Power When You Need It Most
+                KPANDJI Énergie · Générateurs PTO
               </span>
             </div>
           </Link>
 
-          {/* Right: page nav button + sign in */}
+          {/* Right: page nav button + download + sign in */}
           <div className="flex items-center gap-2 md:gap-3">
             {/* Page navigator */}
             <button
@@ -116,8 +119,20 @@ export default function AlternateurTPOPage() {
               <span className="text-white/40">{String(pages.length).padStart(2, "0")}</span>
             </button>
 
+            {/* Download button */}
+            <a
+              href="/pto.pdf"
+              download
+              className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-700 px-3 py-2 text-xs font-bold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-105 hover:from-cyan-400 hover:to-cyan-600 active:scale-95 sm:flex md:px-4 md:text-sm"
+            >
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+              </svg>
+              <span className="hidden md:inline">Télécharger</span>
+            </a>
+
             <Link href="/sign-in">
-              <button className="flex-shrink-0 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-700 px-3 py-2 text-xs font-bold text-white shadow-lg transition-all hover:scale-105 hover:from-cyan-400 hover:to-cyan-600 active:scale-95 md:px-5 md:py-2.5 md:text-sm">
+              <button className="flex-shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs font-bold text-white backdrop-blur-md transition-all hover:scale-105 hover:border-cyan-400/30 hover:bg-white/10 active:scale-95 md:px-4 md:py-2.5 md:text-sm">
                 Se connecter
               </button>
             </Link>
@@ -137,6 +152,7 @@ export default function AlternateurTPOPage() {
                       ? "bg-gradient-to-br from-cyan-500 to-cyan-700 text-white shadow-lg shadow-cyan-500/20"
                       : "border border-white/10 bg-white/5 text-white/40 hover:border-cyan-400/20 hover:text-white/70"
                   }`}
+                  title={page.title}
                 >
                   {page.num}
                 </button>
@@ -154,7 +170,7 @@ export default function AlternateurTPOPage() {
             <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500" />
           </span>
           <span className="text-[0.6rem] font-bold uppercase tracking-wider text-cyan-300/80 md:text-xs">
-            Brochure Technique · {pages.length} Pages
+            Brochure Produit · {pages.length} Pages
           </span>
         </div>
 
@@ -169,17 +185,17 @@ export default function AlternateurTPOPage() {
             animation: "gradient-shift 6s ease infinite",
           }}
         >
-          Alternateur TPO
+          Générateurs PTO
         </h1>
 
         <p className="mx-auto max-w-lg text-xs leading-relaxed text-white/45 sm:text-sm md:max-w-xl md:text-base">
-          Générateurs à prise de force — la puissance quand vous en avez besoin.
+          La puissance quand vous en avez le plus besoin — Génératrices à prise de force pour tracteur.
         </p>
 
         {/* Download + back buttons */}
         <div className="mt-4 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
           <a
-            href="/brochure.pdf"
+            href="/pto.pdf"
             download
             className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-cyan-700 px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-105 hover:from-cyan-400 hover:to-cyan-600 active:scale-95 sm:w-auto md:text-sm"
           >
@@ -210,11 +226,25 @@ export default function AlternateurTPOPage() {
         </div>
       </div>
 
+      {/* ── Active page title bar ── */}
+      {activePageData && (
+        <div className="relative z-10 mx-auto mb-4 max-w-5xl px-4 md:mb-6">
+          <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5 backdrop-blur-sm">
+            <div className="flex h-7 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-700 px-2 text-[0.65rem] font-black text-white shadow-lg shadow-cyan-500/20 md:h-8 md:text-xs">
+              {String(activePageData.num).padStart(2, "0")}
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-xs font-bold text-white md:text-sm">{activePageData.title}</p>
+              <p className="truncate text-[0.6rem] text-white/30 md:text-xs">{activePageData.text}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ── Brochure pages ── */}
       <section className="relative z-10 mx-auto max-w-5xl px-3 pb-16 md:px-6 md:pb-24">
         <div className="flex flex-col gap-6 md:gap-10">
           {pages.map((page, index) => {
-            const isPortrait = page.num === 1 || page.num === 13;
             const isActive = activePage === page.num;
             const isFirst = index === 0;
 
@@ -236,6 +266,9 @@ export default function AlternateurTPOPage() {
                   >
                     {String(page.num).padStart(2, "0")}
                   </div>
+                  <span className={`text-[0.55rem] font-medium transition-colors duration-300 md:text-xs ${isActive ? "text-cyan-300/70" : "text-white/20"}`}>
+                    {page.title}
+                  </span>
                   <div className={`h-px flex-1 transition-all duration-300 ${isActive ? "bg-gradient-to-r from-cyan-500/40 to-transparent" : "bg-gradient-to-r from-white/10 to-transparent"}`} />
                   <span className={`text-[0.55rem] transition-colors duration-300 md:text-xs ${isActive ? "text-cyan-300/70" : "text-white/20"}`}>
                     {page.num} / {pages.length}
@@ -248,7 +281,7 @@ export default function AlternateurTPOPage() {
                     isActive
                       ? "border-cyan-500/25 shadow-2xl shadow-cyan-500/5"
                       : "border-white/[0.06] shadow-xl shadow-black/40"
-                  } ${isPortrait ? "mx-auto max-w-2xl" : "w-full"}`}
+                  } mx-auto max-w-3xl`}
                 >
                   {/* Glow on active */}
                   {isActive && (
@@ -257,12 +290,12 @@ export default function AlternateurTPOPage() {
 
                   <div className="relative z-10 bg-white/[0.01]">
                     <Image
-                      src={`/brochure/page-${String(page.num).padStart(2, "0")}.jpg`}
-                      alt={`Brochure Alternateur TPO — Page ${page.num}`}
-                      width={isPortrait ? 1191 : 2382}
+                      src={`/pto/page-${String(page.num).padStart(2, "0")}.jpg`}
+                      alt={`Brochure PTO — Page ${page.num} — ${page.title}`}
+                      width={1190}
                       height={1684}
                       className="h-auto w-full object-contain"
-                      sizes={isPortrait ? "(max-width: 768px) 100vw, 672px" : "(max-width: 1024px) 100vw, 896px"}
+                      sizes="(max-width: 768px) 100vw, 768px"
                       priority={isFirst}
                     />
                   </div>
@@ -281,6 +314,9 @@ export default function AlternateurTPOPage() {
           <p className="mt-3 text-[0.6rem] text-white/25 md:text-xs">
             Fin de la brochure — {pages.length} pages
           </p>
+          <p className="mt-1 text-[0.6rem] text-cyan-400/30 md:text-xs">
+            De la terre, l'énergie
+          </p>
         </div>
       </section>
 
@@ -295,10 +331,10 @@ export default function AlternateurTPOPage() {
                 ? "scale-125 bg-cyan-400 shadow-lg shadow-cyan-500/30"
                 : "bg-white/15 hover:bg-white/40"
             }`}
-            aria-label={`Page ${page.num}`}
+            aria-label={`Page ${page.num} — ${page.title}`}
           >
             <span className="absolute right-5 whitespace-nowrap rounded-md border border-white/10 bg-black/80 px-2 py-0.5 text-[0.55rem] font-bold text-white/70 opacity-0 transition-opacity group-hover:opacity-100">
-              {page.num}
+              {page.num} · {page.title}
             </span>
           </button>
         ))}
