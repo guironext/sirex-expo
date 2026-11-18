@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import { ManagerNavbar } from "./navbar";
 
 export default function ManagerPage() {
   return (
@@ -48,6 +49,9 @@ export default function ManagerPage() {
         </div>
       </header>
 
+      {/* ── Navbar ── */}
+      <ManagerNavbar />
+
       {/* ── Dashboard content ── */}
       <section className="relative z-10 mx-auto max-w-6xl px-4 pt-8 pb-20 md:pt-12 md:pb-28">
         <div className="mb-8 md:mb-12">
@@ -59,71 +63,44 @@ export default function ManagerPage() {
           </p>
         </div>
 
-        {/* Stats cards */}
-        <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4 lg:gap-6">
-          <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 backdrop-blur-sm md:p-6">
-            <div className="mb-2 flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10">
-                <svg className="h-4 w-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1" />
-                </svg>
-              </div>
-              <span className="text-[0.6rem] font-medium uppercase tracking-wider text-white/40 md:text-xs">Catalogue</span>
-            </div>
-            <p className="text-2xl font-black text-white md:text-3xl">14</p>
-            <p className="text-[0.6rem] text-white/30 md:text-xs">Pages de voitures</p>
-          </div>
-
-          <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 backdrop-blur-sm md:p-6">
-            <div className="mb-2 flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-500/10">
-                <svg className="h-4 w-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <span className="text-[0.6rem] font-medium uppercase tracking-wider text-white/40 md:text-xs">Brochure</span>
-            </div>
-            <p className="text-2xl font-black text-white md:text-3xl">13</p>
-            <p className="text-[0.6rem] text-white/30 md:text-xs">Pages alternateur</p>
-          </div>
-
-          <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 backdrop-blur-sm md:p-6">
-            <div className="mb-2 flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
-                <svg className="h-4 w-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <span className="text-[0.6rem] font-medium uppercase tracking-wider text-white/40 md:text-xs">Équipe</span>
-            </div>
-            <p className="text-2xl font-black text-white md:text-3xl">Commerciaux</p>
-            <p className="text-[0.6rem] text-white/30 md:text-xs">Équipe active</p>
-          </div>
-
-          <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 backdrop-blur-sm md:p-6">
-            <div className="mb-2 flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-500/10">
-                <svg className="h-4 w-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <span className="text-[0.6rem] font-medium uppercase tracking-wider text-white/40 md:text-xs">Événement</span>
-            </div>
-            <p className="text-2xl font-black text-white md:text-3xl">SIREXE</p>
-            <p className="text-[0.6rem] text-white/30 md:text-xs">18-22 Nov 2026</p>
-          </div>
-        </div>
-
         {/* Quick actions */}
         <div className="mb-8">
-          <h2 className="mb-4 text-lg font-bold text-white md:text-xl">Accès rapide</h2>
+          <h2 className="mb-4 text-lg font-bold text-white md:text-xl">Suivi Commercial</h2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
+            <Link href="/manager/prospect" className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm transition-all hover:border-emerald-500/20 hover:bg-emerald-500/[0.03]">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10">
+                  <svg className="h-5 w-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-white">Tous les Prospects</p>
+                  <p className="text-[0.65rem] text-white/40">Voir les prospects de l'équipe</p>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/manager/carte-visite" className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm transition-all hover:border-emerald-500/20 hover:bg-emerald-500/[0.03]">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10">
+                  <svg className="h-5 w-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-white">Cartes de Visite</p>
+                  <p className="text-[0.65rem] text-white/40">Voir les cartes scannées</p>
+                </div>
+              </div>
+            </Link>
+
             <Link href="/voitures" className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm transition-all hover:border-amber-500/20 hover:bg-amber-500/[0.03]">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10">
                   <svg className="h-5 w-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1" />
                   </svg>
                 </div>
                 <div>
@@ -132,7 +109,13 @@ export default function ManagerPage() {
                 </div>
               </div>
             </Link>
+          </div>
+        </div>
 
+        {/* Secondary quick links */}
+        <div className="mb-8">
+          <h2 className="mb-4 text-lg font-bold text-white md:text-xl">Ressources</h2>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
             <Link href="/alternateur-tpo" className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm transition-all hover:border-cyan-500/20 hover:bg-cyan-500/[0.03]">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10">
